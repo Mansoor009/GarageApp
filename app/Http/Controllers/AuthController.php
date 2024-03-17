@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function register_control(Request $request):JsonResponse
     {
         try {
-            //code...
+            dd($request->all());
         } catch (Exception $e) {
             throw $e;
         }

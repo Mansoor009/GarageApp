@@ -40,15 +40,21 @@
                     <div class="col-lg-4 align-items-center">
                         <h3>Welcome!</h3>
                         <div class="register-form">
-                            <form id="register-form" method="POST" enctype="application/x-www-form-urlencoded">
+                            <form id="register-form" name="register-form">
+                                @csrf
                                 <div class="card mt-3">
                                     <div class="card-body">
                                         <h5 class="card-title mb-3">Please Register with My Garage</h5>
                                         <hr>
                                         <div class="mb-3">
-                                            <label for="full_name" class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" id="full_name" name="full_name"
-                                                placeholder="Enter Full Name">
+                                            <label for="first_name" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="first_name" name="first_name"
+                                                placeholder="Enter First Name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="last_name" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                                placeholder="Enter Last Name">
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email address</label>
@@ -68,7 +74,7 @@
                                                 <i class="input-group-text fe fe-eye"></i>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-3">Register</button>
+                                        <button type="submit" class="btn btn-primary mt-3" id="register">Register</button>
                                     </div>
                                 </div>
                             </form>
@@ -92,9 +98,44 @@
                     email: {
                         required: true,
                         email: true
+                    },
+                    mobile_number: {
+                        required: true,
+                        maxlength: 10,
+                        minlength: 10,
+                        digits: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8
                     }
+                },
+                messages: {
+                    mobile_number: {
+                        required: 'Enter Valid Mobile Number'
+                    }
+                },
+                submitHandler: function() {
+                    let data = $('#register-form').serialize();
+                    $.ajax({
+                        url: '{{ route('register.control') }}',
+                        type: "post",
+                        data: data,
+                        beforeSend: function() {
+                            $("#register").prop("disabled", true).text("Please Wait");
+                        },
+                        success: function(res) {
+                            console.log(res);
+                        },
+                        error: function(xhr, status, error) {
+
+                        },
+                        complete: function() {
+                            $("#register").text('Register');
+                        }
+                    });
                 }
-            })
+            });
             $('.fe-eye').on('click', function() {
                 if ($(this).hasClass('fe-eye')) {
                     $(this).removeClass('fe-eye').addClass('fe-eye-off');
