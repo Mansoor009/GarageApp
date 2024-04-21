@@ -41,6 +41,7 @@
                         <h3>Welcome Back!</h3>
                         <div class="login-form">
                             <form id="login-form" method="POST" enctype="application/x-www-form-urlencoded">
+                                @csrf
                                 <div class="card mt-3">
                                     <div class="card-body">
                                         <h5 class="card-title mb-3">Please Log In to continue</h5>
@@ -58,7 +59,9 @@
                                                 <i class="input-group-text fe fe-eye"></i>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-3">Log In</button>
+                                        <button type="submit" class="btn btn-primary mt-2">Log In</button>
+                                        <div class='mt-2'>New User? <a href="{{ route('register.view') }}">Sign Up</a>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -69,23 +72,16 @@
             </div>
         </div>
     </section>
+    <script>
+        var loginControl = '{{ route('login.control') }}';
+  
+    </script>
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.fe-eye').on('click', function() {
-                if ($(this).hasClass('fe-eye')) {
-                    $(this).removeClass('fe-eye').addClass('fe-eye-off');
-                    $('#password').attr('type', 'text');
-                } else {
-                    $(this).addClass('fe-eye').removeClass('fe-eye-off');
-                    $('#password').attr('type', 'password');
-                }
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/plugins/sweetalert2/src/sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/login.js') }}"></script>
 </body>
 
 </html>

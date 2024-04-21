@@ -18,5 +18,5 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/register','register_view')->name('register.view');
     Route::post('/add-register','register_control')->name('register.control');
     Route::get('/','login_view')->name('login.view');
-    Route::post('/add-login','login_control')->name('login.control');
+    Route::post('/login','login_control')->name('login.control');
 });
