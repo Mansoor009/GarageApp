@@ -73,8 +73,9 @@
         </div>
     </section>
     <script>
-        var loginControl = '{{ route('login.control') }}';
-  
+        let loginControl    =    '{{ route('login.control') }}';
+        let AdminDash       =    '{{route('admin.index')}}';
+        let MemberDash      =    '{{route('member.index')}}';
     </script>
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>

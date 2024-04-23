@@ -1,4 +1,3 @@
-
 <style>
     body {
         margin: 0;
@@ -85,8 +84,8 @@
             <div class="close-btn">
                 <i class="fa-solid fa-xmark"></i>
             </div>
-            <a href="{{route('member.dashboard')}}">Attendance</a>
-            <a href="{{route('leave.dashboard')}}">Leave Dashboard</a>
+            <a href="#">Attendance</a>
+            <a href="#">Leave Dashboard</a>
         </div>
     </nav>
     <div class="open-btn">
