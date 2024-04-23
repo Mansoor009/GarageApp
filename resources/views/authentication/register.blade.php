@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/sweet-alert/sweetalert.css') }}">
     <title>My Garage - Register</title>
 </head>
 <style>
@@ -74,7 +75,8 @@
                                                 <i class="input-group-text fe fe-eye"></i>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-3" id="register">Register</button>
+                                        <button type="submit" class="btn btn-primary mt-3" id="register">Create Account</button>
+                                        <div class='mt-2'>Already Have a Account? <a href="{{route('login.view')}}">Sign In</a></div>
                                     </div>
                                 </div>
                             </form>
@@ -85,69 +87,16 @@
             </div>
         </div>
     </section>
+    <script>
+        var registerControl = '{{ route('register.control') }}';
+        var loginRedirect = '{{route('login.view')}}';
+    </script>
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-
-            $('#register-form').validate({
-                rules: {
-                    full_name: "required",
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    mobile_number: {
-                        required: true,
-                        maxlength: 10,
-                        minlength: 10,
-                        digits: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 8
-                    }
-                },
-                messages: {
-                    mobile_number: {
-                        required: 'Enter Valid Mobile Number'
-                    }
-                },
-                submitHandler: function() {
-                    let data = $('#register-form').serialize();
-                    $.ajax({
-                        url: '{{ route('register.control') }}',
-                        type: "post",
-                        data: data,
-                        beforeSend: function() {
-                            $("#register").prop("disabled", true).text("Please Wait");
-                        },
-                        success: function(res) {
-                            console.log(res);
-                        },
-                        error: function(xhr, status, error) {
-
-                        },
-                        complete: function() {
-                            $("#register").text('Register');
-                        }
-                    });
-                }
-            });
-            $('.fe-eye').on('click', function() {
-                if ($(this).hasClass('fe-eye')) {
-                    $(this).removeClass('fe-eye').addClass('fe-eye-off');
-                    $('#password').attr('type', 'text');
-                } else {
-                    $(this).addClass('fe-eye').removeClass('fe-eye-off');
-                    $('#password').attr('type', 'password');
-                }
-            });
-
-        });
-    </script>
+    <script src="{{ asset('assets/plugins/sweetalert2/src/sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/register.js') }}"></script>
 </body>
 
 </html>
